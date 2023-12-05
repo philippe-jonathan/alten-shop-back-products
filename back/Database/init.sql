@@ -1,6 +1,11 @@
 USE alten_shop;
 
-CREATE TABLE produits (
+CREATE TABLE categories (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE products (
     id INT PRIMARY KEY AUTO_INCREMENT,
     code VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -14,9 +19,4 @@ CREATE TABLE produits (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE categories (
-    id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
 );

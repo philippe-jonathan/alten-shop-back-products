@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: database
+    restart: on-failure:5
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+      - database-data:/var/lib/db
+
+  api:
+    container_name: api
+    restart: on-failure:5
+    build: 
+      context: ./app
+    ports:
+      - "3000:3000"
+    working_dir: /usr/src/app
+    volumes:
+      - ./app:/usr/src/app
+    depends_on:
+      - database
+      
+volumes:
+  database-data:
