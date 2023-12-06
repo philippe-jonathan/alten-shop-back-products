@@ -12,6 +12,11 @@ services:
     volumes:
       - ./database:/docker-entrypoint-initdb.d
       - database-data:/var/lib/db
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   api:
     container_name: api
@@ -20,11 +25,14 @@ services:
       context: ./app
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     working_dir: /usr/src/app
     volumes:
       - ./app:/usr/src/app
     depends_on:
-      - database
-      
+      database:
+        condition: service_healthy
+
 volumes:
   database-data:
