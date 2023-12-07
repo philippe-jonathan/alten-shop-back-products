@@ -56,6 +56,7 @@ L'API est structurée de la manière suivante :
             - **`routes/`** : Contient la définition des routes de l'API et associe les endpoints au contrôleur lié.
             - **`index.js`** : Le point d'entrée de l'application, où le serveur Express est configuré et les routes sont montées.
     - **`database/`** : Ce dossier contient le fichier `init.sql` qui initialise la base de données.
+    - **`alten-shop.postman_collection.json`** : Collection Postman contenant les requêtes prédéfinies pour tester et interagir avec l'API.
 
 # Utilisation de l'API
 L'url de l'api est : [http://localhost:3000](http://localhost:3000)
