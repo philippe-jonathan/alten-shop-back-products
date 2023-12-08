@@ -40,6 +40,27 @@ Pour pouvoir démarrer le projet, executez cette commande depuis le dossier `bac
 docker compose up -d
 ```
 
+Si vous rencontrez une erreur semblable à celle-ci sur le service `api` : 
+```
+Error connecting to the database : Error: connect ECONNREFUSED 172.19.0.2:3306
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.19.0.2',
+  port: 3306,
+  fatal: true
+}
+```
+
+Cette erreur se produit car le service `api` tente de se connecter à la base de données (service `database`) alors que celle-ci n'est pas encore prête à recevoir une connexion.
+
+Deux solutions sont possibles ('*' recommandé) : 
+
+> Essayer de relancer uniquement le service `api` sur docker.
+
+> '*' Ajuster les valeur de `interval`, `timeout` et `retries` dans le paramètre `healthcheck` du service `database` dans le fichier `docker-compose.yml`. Cela permettra d'accordé plus de temps avant que le service `api` tente de s'y connecter.
+
 # Structure de l'API
 
 L'API est structurée de la manière suivante :
