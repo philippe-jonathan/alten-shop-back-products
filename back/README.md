@@ -2,7 +2,7 @@
 
 ## Variables d'environnement pour la connexion à la base de données :
 
-Créez un fichier `.env` dans le dossier `/back/app` avec le contenu suivant en exemple :
+Créez un fichier `.env` dans le dossier `/back/app/src/config` avec le contenu suivant en exemple :
 
 ```env
 DATABASE_HOST=database
