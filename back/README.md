@@ -87,6 +87,8 @@ L'url de l'api est : [http://localhost:3000](http://localhost:3000)
 | **/products**      | Create a new products | Retrieve all products          | X                                        | X   |     X            |
 | **/products/1**    | X                     | Retrieve details for product 1 | Update details of product 1 if it exists | X   | Remove product 1 |
 
+Vous trouverez également une collection postamn `alten-shop.postman_collection.json` dans le dossier `back`.
+
 ## Base de données
 
 La table `products` stocke les informations sur chaque produit. Voici un aperçu des colonnes de la table `products` :
@@ -106,8 +108,8 @@ La table `products` stocke les informations sur chaque produit. Voici un aperçu
 | created_at                                          | Timestamp de création du produit                                                | Auto   |
 | updated_at                                          | Timestamp de la dernière mise à jour du produit                                 | Auto   |
 
-## Problème rencontré avec le FRONT tel qu'il est fourni
+## Problème rencontré avec le **front** tel qu'il est fourni
 
-Lors de l'ajout d'un produit, pour les champs `invetoryStatus` et `category` il faut bien cliquer sur une valeur sinon la valeur n'est pas transmise au back. Par exemple, si je souhaite ajouter un produit avec la catégorie `Accessories` je dois cliquer sur le champ pour sélectionné une autre catégorie, puis re-sélectionné `accessories` pour que la valeur soit transmise. Il faut faire la même manipulation avec le champ `inventory Status`.
+Lors de l'ajout d'un produit, pour les champs `invetoryStatus` et `category` il faut bien cliquer sur une valeur sinon la valeur n'est pas transmise au back. Par exemple, si je souhaite ajouter un produit avec la catégorie `Accessories` je dois cliquer sur le champ pour sélectionné une autre catégorie, puis re-sélectionné `Accessories` pour que la valeur soit transmise. Il faut faire la même manipulation avec le champ `inventory Status`.
 
 Il faut également ne plus avoir le focus sur un des champs. Par exemple, si je garde le focus sur le dernier champ `quantity`, la valeur n'est pas transmise.
