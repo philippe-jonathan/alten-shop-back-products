@@ -44,15 +44,20 @@ const product_controller = {
     },
 
     create_product: async (req, res) => {
-        const { code, name, description, price, quantity, inventory_status, category_id, image, rating } = req.body;
+        console.log("Receiving data : " + JSON.stringify(req.body));
+        const { code, name, description, price, quantity, inventoryStatus, category, image, rating } = req.body;
 
-        if (!code || !name || !description || !price || !quantity || !inventory_status || !category_id) {
-            return res.status(400).json({ error: 'Please provide all necessary information' });
+
+        const valid_categories = ['Accessories', 'Clothing', 'Electronics', 'Fitness'];
+        const valid_inventory_status = ['INSTOCK', 'LOWSTOCK', 'OUTOFSTOCK'];
+        if (!code || !name || !description || !price || quantity < 0 || !inventoryStatus || !category || !valid_categories.includes(category) || !valid_inventory_status.includes(inventoryStatus)) {
+        const errorMessage = `"category" must be: ${valid_categories.join(', ')}, and "inventoryStatus" must be: ${valid_inventory_status.join(', ')}`;
+            return res.status(400).json({ error: `Please provide all necessary information, and ensure ${errorMessage}` });
         }
 
         try {
-            const sql = 'INSERT INTO products (code, name, description, price, quantity, inventory_status, category_id, image, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-            const values = [code, name, description, price, quantity, inventory_status, category_id, image, rating];
+            const sql = 'INSERT INTO products (code, name, description, price, quantity, inventoryStatus, category, image, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            const values = [code, name, description, price, quantity, inventoryStatus, category, image, rating];
 
             const [result] = await db.promise().query(sql, values);
 

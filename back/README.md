@@ -89,33 +89,25 @@ L'url de l'api est : [http://localhost:3000](http://localhost:3000)
 
 ## Base de données
 
-### Table `categories`
+La table `products` stocke les informations sur chaque produit. Voici un aperçu des colonnes de la table `products` :
 
-La table `categories` contient les catégories disponibles pour les produits. Voici les données initiales :
+| Colonne                                             | Description                                                                     | Requis |
+|---------------------------------------------------- |-------------------------------------------------------------------------------- | ------ |
+| id                                                  | Identifiant unique du produit                                                   | Auto   |
+| code                                                | Code du produit                                                                 | ✅     |
+| name                                                | Nom du produit                                                                  | ✅     |
+| description                                         | Description du produit                                                          | ✅     |
+| price                                               | Prix du produit (DECIMAL(10, 2))                                                | ✅     |
+| quantity                                            | Quantité disponible en stock                                                    | ✅     |
+| inventoryStatus                                     | Statut de l'inventaire du produit (ENUM('INSTOCK', 'LOWSTOCK', 'OUTOFSTOCK'))   | ✅     |
+| category                                            | Category du produit (ENUM('Accessories', 'Clothing', 'Electronics', 'Fitness')) | ✅     |
+| image                                               | URL de l'image du produit                                                       | ❌     |
+| rating                                              | Évaluation du produit                                                           | ❌     |
+| created_at                                          | Timestamp de création du produit                                                | Auto   |
+| updated_at                                          | Timestamp de la dernière mise à jour du produit                                 | Auto   |
 
-| id | name        |
-|----|-------------|
-| 1  | Accessories |
-| 2  | Fitness     |
-| 3  | Clothing    |
-| 4  | Electronics |
+## Problème rencontré avec le FRONT tel qu'il est fourni
 
-### Table `products`
+Lors de l'ajout d'un produit, pour les champs `invetoryStatus` et `category` il faut bien cliquer sur une valeur sinon la valeur n'est pas transmise au back. Par exemple, si je souhaite ajouter un produit avec la catégorie `Accessories` je dois cliquer sur le champ pour sélectionné une autre catégorie, puis re-sélectionné `accessories` pour que la valeur soit transmise. Il faut faire la même manipulation avec le champ `inventory Status`.
 
-La table `products` stocke les informations sur chaque produit. Elle est liée à la table `categories` via la colonne `category_id`. Voici un aperçu des colonnes de la table `products` :
-
-| Colonne                                             | Description                                                           | Requis |
-|---------------------------------------------------- |---------------------------------------------------------------------- | ------ |
-| id                                                  | Identifiant unique du produit                                         | Auto   |
-| code                                                | Code du produit                                                       | ✅     |
-| name                                                | Nom du produit                                                        | ✅     |
-| description                                         | Description du produit                                                | ✅     |
-| price                                               | Prix du produit (DECIMAL(10, 2))                                      | ✅     |
-| quantity                                            | Quantité disponible en stock                                          | ✅     |
-| inventory_status                                    | Statut de l'inventaire du produit (ENUM('INSTOCK', 'OUTOFSTOCK'))     | ✅     |
-| category_id                                         | ID de la catégorie associée au produit                                | ✅     |
-| image                                               | URL de l'image du produit                                             | ❌     |
-| rating                                              | Évaluation du produit                                                 | ❌     |
-| created_at                                          | Timestamp de création du produit                                      | Auto   |
-| updated_at                                          | Timestamp de la dernière mise à jour du produit                       | Auto   |
-| FOREIGN KEY (category_id) REFERENCES categories(id) | Clé étrangère liant la colonne `category_id` à la table `categories`. | Auto   |
+Il faut également ne plus avoir le focus sur un des champs. Par exemple, si je garde le focus sur le dernier champ `quantity`, la valeur n'est pas transmise.

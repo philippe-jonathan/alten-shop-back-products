@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": \"f230fh0g3\",\n    \"name\": \"Bamboo Watch\",\n    \"description\": \"Product Description\",\n    \"price\": 65,\n    \"quantity\": 24,\n    \"inventory_status\": \"INSTOCK\",\n    \"category_id\": 1,\n    \"image\": \"\",\n    \"rating\": 5\n}",
+							"raw": "{\n    \"code\": \"f230fh0g3\",\n    \"name\": \"Bamboo Watch\",\n    \"description\": \"Product Description\",\n    \"image\": \"bamboo-watch.jpg\",\n    \"price\": 65,\n    \"category\": \"Accessories\",\n    \"quantity\": 24,\n    \"inventoryStatus\": \"INSTOCK\",\n    \"rating\": 5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
